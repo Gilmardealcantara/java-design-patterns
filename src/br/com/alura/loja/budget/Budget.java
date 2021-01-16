@@ -1,6 +1,7 @@
 package br.com.alura.loja.budget;
 
 import br.com.alura.loja.budget.state.BudgetState;
+import br.com.alura.loja.budget.state.Finished;
 import br.com.alura.loja.budget.state.InAnalysis;
 
 import java.math.BigDecimal;
@@ -48,5 +49,9 @@ public class Budget {
 
     public void setState(BudgetState state) {
         this.state = state;
+    }
+
+    public boolean isFinished() {
+        return state instanceof Finished;
     }
 }
