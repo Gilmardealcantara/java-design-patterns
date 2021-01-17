@@ -3,6 +3,7 @@ package br.com.alura.loja.order;
 import br.com.alura.loja.actions.SaveOrderInDatabase;
 import br.com.alura.loja.actions.SendOrderEmail;
 import br.com.alura.loja.budget.Budget;
+import br.com.alura.loja.budget.BudgetItem;
 import br.com.alura.loja.order.action.ActionsAfterOrderGenerate;
 
 import java.math.BigDecimal;
@@ -17,7 +18,8 @@ public class OrderGenerateCommandHandler {
     }
 
     public void execute(OrderGenerateCommand command){
-        Budget budget = new Budget(command.getBudgetValue(), command.getQntItems());
+        Budget budget = new Budget();
+        budget.addItem(new BudgetItem(command.getBudgetValue())); //command.getQntItems()
         Order order = new Order(command.getClient(), LocalDateTime.now(), budget);
 
         actions.forEach(a -> a.executeAction(order));

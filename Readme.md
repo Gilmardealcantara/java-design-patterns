@@ -5,3 +5,4 @@ state
 command
 observer
 adapter
+Decorator

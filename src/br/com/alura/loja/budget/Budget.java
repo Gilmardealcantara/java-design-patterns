@@ -5,15 +5,17 @@ import br.com.alura.loja.budget.state.Finished;
 import br.com.alura.loja.budget.state.InAnalysis;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Budget {
+public class Budget implements CanBeBudgeted{
     private BigDecimal value;
-    private int qntItems;
     private BudgetState state;
+    private List<CanBeBudgeted> items;
 
-    public Budget(BigDecimal value, int qntItems) {
-        this.value = value;
-        this.qntItems = qntItems;
+    public Budget() {
+        this.value = BigDecimal.ZERO;
+        this.items = new ArrayList<>();
         this.state = new InAnalysis();
     }
 
@@ -40,7 +42,7 @@ public class Budget {
     }
 
     public int getQntItems() {
-        return qntItems;
+        return this.items.size();
     }
 
     public BudgetState getState() {
@@ -53,5 +55,10 @@ public class Budget {
 
     public boolean isFinished() {
         return state instanceof Finished;
+    }
+
+    public void addItem(CanBeBudgeted item){
+        this.items.add(item);
+        this.value = this.value.add(item.getValue());
     }
 }
