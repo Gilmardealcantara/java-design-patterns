@@ -6,3 +6,5 @@ command
 observer
 adapter
 Decorator
+facade 
+proxy
