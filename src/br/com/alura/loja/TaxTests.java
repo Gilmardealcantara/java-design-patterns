@@ -11,8 +11,9 @@ public class TaxTests {
     public static void main(String[] args) {
         Budget budget = new Budget(new BigDecimal("10.0"), 2);
         TaxCalculator taxCalculator = new TaxCalculator();
-        System.out.println(taxCalculator.calculate(budget, new ISS()));
-        System.out.println(taxCalculator.calculate(budget, new ICMS()));
+        System.out.println(taxCalculator.calculate(budget, new ISS(null)));
+        System.out.println(taxCalculator.calculate(budget, new ICMS(null)));
+        System.out.println(taxCalculator.calculate(budget, new ICMS(new ISS(null))));
 
     }
 }
